@@ -1,0 +1,46 @@
+name: "Komodo Periphery"
+description: "Komodo Periphery Agent - connect your Home Assistant server to Komodo for container management and infrastructure monitoring"
+version: "0.0.2"
+slug: "komodo-periphery"
+init: false
+arch:
+  - aarch64
+  - amd64
+startup: application
+boot: auto
+host_pid: true
+full_access: true
+docker_api: true
+apparmor: false
+devices:
+  - /var/run/docker.sock
+map:
+  # certificates are stored in data
+  - type: data
+    read_only: false
+    path: /data
+  # share is mounted in the same path as the underlying host - this way it
+  # matches what the underlying docker daemon sees.
+  - type: share
+    read_only: false
+    path: /mnt/data/supervisor/share
+  # the optional config.yaml file is read from app_config
+  - type: app_config
+    read_only: true
+    path: /config
+options:
+  core_address: ""
+  connect_as: ""
+  onboarding_key: ""
+  disable_terminals: false
+  disable_container_terminals: false
+  include_disk_mounts: "/"
+  exclude_disk_mounts: ""
+schema:
+  core_address: str
+  connect_as: str
+  onboarding_key: str?
+  disable_terminals: bool
+  disable_container_terminals: bool
+  include_disk_mounts: str?
+  exclude_disk_mounts: str?

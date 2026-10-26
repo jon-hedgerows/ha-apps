@@ -1,0 +1,22 @@
+configuration:
+  core_address:
+    name: "Core Address"
+    description: "Name or IP address of your Komodo Core instance (e.g., komodo.example.com)"
+  connect_as:
+    name: "Connect As"
+    description: "Server name to register as in Komodo"
+  onboarding_key:
+    name: "Onboarding Key"
+    description: "Key for initial connection. Can be removed after first setup."
+  disable_terminals:
+    name: "Disable Terminals"
+    description: "Disable terminal/SSH access through Periphery"
+  disable_container_terminals:
+    name: "Disable Container Terminals"
+    description: "Disable container exec/attach through Periphery"
+  include_disk_mounts:
+    name: "Include Disk Mounts"
+    description: "Comma-separated mount paths to include in disk reports"
+  exclude_disk_mounts:
+    name: "Exclude Disk Mounts"
+    description: "Comma-separated mount paths to exclude from disk reports"
