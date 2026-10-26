@@ -1,19 +1,20 @@
 name: "Komodo Periphery"
 description: "Komodo Periphery Agent - connect your Home Assistant server to Komodo for container management and infrastructure monitoring"
-version: "0.0.2"
+version: "0.0.3-beta"
+image: "ghcr.io/jon-hedgerows/ha-apps-komodo-periphery"
 slug: "komodo-periphery"
 init: false
 arch:
   - aarch64
   - amd64
-startup: application
-boot: auto
+# startup: application
+# boot: auto
 host_pid: true
 full_access: true
 docker_api: true
 apparmor: false
-devices:
-  - /var/run/docker.sock
+# devices:
+#   - /var/run/docker.sock
 map:
   # certificates are stored in data
   - type: data
@@ -38,7 +39,7 @@ options:
   exclude_disk_mounts: ""
 schema:
   core_address: str
-  connect_as: str
+  connect_as: str?
   onboarding_key: str?
   disable_terminals: bool
   disable_container_terminals: bool

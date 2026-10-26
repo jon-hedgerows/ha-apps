@@ -1,0 +1,49 @@
+#!/command/with-contenv bashio
+# shellcheck shell=bash disable=SC2155
+# ==============================================================================
+# Home Assistant Community App: Komodo Periphery
+# Runs Periphery
+# ==============================================================================
+
+bashio::log.info "Starting Periphery..."
+
+# core_address is required
+bashio::config.require 'core_address'
+
+export PERIPHERY_CORE_ADDRESS=$(bashio:config 'core_address')
+
+export PERIPHERY_CONNECT_AS=$(bashio:config 'connect_as' "$(bashio::info.hostname)")
+
+if bashio::config.has_value "onboarding_key" ; then
+  export PERIPHERY_ONBOARDING_KEY=$(bashio::config "onboarding_key")
+fi
+
+export PERIPHERY_ROOT_DIRECTORY=$(bashio::config "root_directory" "/data/komodo")
+
+if bashio::config.true "disable_terminals" ; then
+  export PERIPHERY_DISABLE_TERMINALS="true"
+fi
+
+if bashio::config.true "disable_container_terminals" ; then
+  export PERIPHERY_DISABLE_CONTAINER_TERMINALS="true"
+fi
+
+export PERIPHERY_INCLUDE_DISK_MOUNTS=$(bashio::config "include_disk_mounts" "/")
+
+if bashio::config.has_value "exclude_disk_mounts" ; then
+  export PERIPHERY_EXCLUDE_DISK_MOUNTS=$(bashio::config "exclude_disk_mounts" "")
+fi
+
+export PERIPHERY_PRIVATE_KEY="file:/data/keys/periphery.key"
+export PERIPHERY_CORE_PUBLIC_KEYS="file:/data/keys/core.pub"
+
+mkdir -p "${PERIPHERY_ROOT_DIRECTORY}"
+mkdir -p /data/keys
+
+bashio::log.info "Connecting to: ${PERIPHERY_CORE_ADDRESS}"
+bashio::log.info "As server: ${PERIPHERY_CONNECT_AS}"
+
+# update ca certificates on startup to help detect revoked/disabled certs
+update-ca-certificates
+
+exec /usr/bin/periphery
