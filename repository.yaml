@@ -1,5 +1,5 @@
 # https://developers.home-assistant.io/docs/add-ons/repository#repository-configuration
 
-name: jon-hedgerows Home Assistant Apps
+name: "Home Assistant Apps from jon-hedgerows"
 url: https://github.com/jon-hedgerows/ha-apps
-maintainer: Jon Davies <jon@hedgerows.org.uk>
+maintainer: "Jon Davies <jon@hedgerows.org.uk>"
