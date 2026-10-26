@@ -1,6 +1,7 @@
 name: "Komodo Periphery"
 description: "Komodo Periphery Agent - connect your Home Assistant server to Komodo for container management and infrastructure monitoring"
 version: "0.0.3-beta"
+image: "ghcr.io/jon-hedgerows/ha-apps-komodo-periphery"
 slug: "komodo-periphery"
 init: false
 arch:
