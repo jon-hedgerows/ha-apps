@@ -19,7 +19,7 @@ jobs:
       - name: List Apps
         id: list
         run: |
-          echo "applist=$(find . -type d -depth 1 -not -path '*/.*' | sed 's#./##' | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+          echo "applist=$(find . -type d -maxdepth 1 -not -path '*/.*' | sed 's#./##' | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
 
   build-and-push:
     name: Build Docker Images
