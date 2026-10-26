@@ -4,12 +4,13 @@
 
 repo="jon-hedgerows/ha-apps"
 
-for app in $(find . -maxdepth 1 -type d  -not -path './.*' -not -path '.' | sed 's#./##') ; do
+for app in *(/) ; do
   echo "Building ${app}"
-  taglatest=ghcr.io/${repo}-${app}:latest
-  tagsemver=ghcr.io/${repo}-${app}:$(git describe --tags | sed 's/^v//')
-  tagsemvermajorminor=ghcr.io/${repo}-${app}:$(git describe --tags | sed 's/^v//' | cut -f1-2 -d.)
-  tagsemvermajor=ghcr.io/${repo}-${app}:$(git describe --tags | sed 's/^v//' | cut -f1 -d.)
+  version=$(awk '/^version: / {gsub(/"/, "", $2); print $2}' ${app}/config.yaml)
+  taglatest="ghcr.io/${repo}-${app}:latest"
+  tagsemver="ghcr.io/${repo}-${app}:${version}"
+  tagsemvermajorminor="ghcr.io/${repo}-${app}:${version%.*}"
+  tagsemvermajor="ghcr.io/${repo}-${app}:${version%%.*}"
   
   docker buildx build --build-arg VERSION="${tagsemver}" --file "./${app}/Dockerfile" --tag "${taglatest}" --tag "${tagsemver}" --tag "${tagsemvermajorminor}" --tag "${tagsemvermajor}" ./${app}
 done

@@ -3,13 +3,13 @@ ARG DEBIAN_RELEASE=trixie
 # use the base-debian variant matching the Debian release
 ARG HABASE=ghcr.io/home-assistant/base-debian:${DEBIAN_RELEASE}
 # origin for the periphery binary
-ARG KOMODOBINARIES_IMAGE=ghcr.io/moghtech/komodo-periphery:2
+ARG PERIPHERY_IMAGE=ghcr.io/moghtech/komodo-periphery:2
 # The build version, used for the io.hass.version label
 ARG VERSION="0.0.0"
 
 ###
 
-FROM ${KOMODOBINARIES_IMAGE} AS komodoperiphery
+FROM ${PERIPHERY_IMAGE} AS periphery
 
 FROM ${HABASE} AS base
 
@@ -37,13 +37,13 @@ RUN apt-get update \
 
 LABEL \
   komodo.skip="true" \
-  io.hass.version="${VERSION}" \
-  io.hass.type="app" \
-  io.hass.arch="aarch64|amd64" \
-  org.opencontainers.image.description="Komodo Periphery packaged as a Home Assistant App"
+  org.opencontainers.image.title="Komodo Periphery" \
+  org.opencontainers.image.description="Komodo Periphery packaged as a Home Assistant App" \
+  org.opencontainers.image.source="https://github.com/jon-hedgerows/ha-apps" \
+  org.opencontainers.image.licenses="Apache License 2.0"
 
 # setup s6
 COPY rootfs /
 
 # install periphery
-COPY --from=komodoperiphery /usr/local/bin/periphery /usr/bin/periphery
+COPY --from=periphery /usr/local/bin/periphery /usr/bin/periphery
