@@ -4,7 +4,7 @@
 
 repo="jon-hedgerows/ha-apps"
 
-for app in $(find . -type d -maxdepth 1 -not -path '*/.*' | sed 's#./##') ; do
+for app in $(find . -maxdepth 1 -type d  -not -path './.*' -not -path '.' | sed 's#./##') ; do
   echo "Building ${app}"
   taglatest=ghcr.io/${repo}-${app}:latest
   tagsemver=ghcr.io/${repo}-${app}:$(git describe --tags | sed 's/^v//')

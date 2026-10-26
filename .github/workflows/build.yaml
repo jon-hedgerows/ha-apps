@@ -19,7 +19,7 @@ jobs:
       - name: List Apps
         id: list
         run: |
-          echo "applist=$(find . -type d -maxdepth 1 -not -path '*/.*' | sed 's#./##' | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+          echo "applist=$(find . -maxdepth 1 -type d  -not -path './.*' -not -path '.' | sed 's#./##' | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
 
   build-and-push:
     name: Build Docker Images
@@ -71,7 +71,7 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           context: ./${{ matrix.app }}
-          file: Dockerfile
+          file: ./${{ matrix.app }}/Dockerfile
           build-args: |
             VERSION={{version}}
           push: true
