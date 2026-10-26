@@ -38,7 +38,7 @@ options:
   exclude_disk_mounts: ""
 schema:
   core_address: str
-  connect_as: str
+  connect_as: str?
   onboarding_key: str?
   disable_terminals: bool
   disable_container_terminals: bool

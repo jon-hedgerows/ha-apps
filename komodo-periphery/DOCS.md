@@ -8,20 +8,20 @@
 
 ### Required
 
-| Option             | Description                                                                                                |
-| ------------------ | ---------------------------------------------------------------------------------------------------------- |
-| **Core Address**   | DNS name or IP address of your Komodo Core instance (e.g., `komodo.example.com`)                           |
-| **Connect As**     | Server name used for registration in Komodo                                                                |
-| **Onboarding Key** | Onboarding Key for initial connection. Create in Komodo UI under Settings. Not required after first setup. |
+| Option           | Description                                                                      |
+| ---------------- | -------------------------------------------------------------------------------- |
+| **Core Address** | DNS name or IP address of your Komodo Core instance (e.g., `komodo.example.com`) |
 
 ### Optional
 
-| Option                          | Default   | Description                                              |
-| ------------------------------- | --------- | -------------------------------------------------------- |
-| **Disable Terminals**           | `false`   | Disable terminal/SSH access through Periphery            |
-| **Disable Container Terminals** | `false`   | Disable container exec/attach through Periphery          |
-| **Include Disk Mounts**         | `/`       | Comma-separated mount paths to include in disk reports   |
-| **Exclude Disk Mounts**         | _(empty)_ | Comma-separated mount paths to exclude from disk reports |
+| Option                          | Default                     | Description                                                        |
+| ------------------------------- | --------------------------- | ------------------------------------------------------------------ |
+| **Connect As**                  | hostname of the host system | Server name used for registration in Komodo                        |
+| **Onboarding Key**              | _(empty)_                   | Onboarding Key for initial connection. Required for initial setup. |
+| **Disable Terminals**           | `false`                     | Disable terminal/SSH access through Periphery                      |
+| **Disable Container Terminals** | `false`                     | Disable container exec/attach through Periphery                    |
+| **Include Disk Mounts**         | `/`                         | Comma-separated mount paths to include in disk reports             |
+| **Exclude Disk Mounts**         | _(empty)_                   | Comma-separated mount paths to exclude from disk reports           |
 
 ## Setup
 

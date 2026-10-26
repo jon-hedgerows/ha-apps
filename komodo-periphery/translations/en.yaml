@@ -1,13 +1,13 @@
 configuration:
   core_address:
     name: "Core Address"
-    description: "Name or IP address of your Komodo Core instance (e.g., komodo.example.com)"
+    description: "Name or IP address of your Komodo Core instance, e.g. komodo.example.com"
   connect_as:
     name: "Connect As"
-    description: "Server name to register as in Komodo"
+    description: "Server name to register as in Komodo, defaults to Home Assistant's hostname"
   onboarding_key:
     name: "Onboarding Key"
-    description: "Key for initial connection. Can be removed after first setup."
+    description: "Key for initial connection, may be removed after first setup"
   disable_terminals:
     name: "Disable Terminals"
     description: "Disable terminal/SSH access through Periphery"
@@ -16,7 +16,7 @@ configuration:
     description: "Disable container exec/attach through Periphery"
   include_disk_mounts:
     name: "Include Disk Mounts"
-    description: "Comma-separated mount paths to include in disk reports"
+    description: 'Comma-separated mount paths to include in disk reports, defaults to "/"'
   exclude_disk_mounts:
     name: "Exclude Disk Mounts"
     description: "Comma-separated mount paths to exclude from disk reports"
