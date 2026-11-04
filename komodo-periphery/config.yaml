@@ -10,7 +10,7 @@ arch:
 # startup: application
 # boot: auto
 host_pid: true
-full_access: false
+# full_access: false
 docker_api: true
 apparmor: false
 map:
