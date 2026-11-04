@@ -28,7 +28,7 @@
       "pinDigests": false
     },
     {
-      "description": "Updates to the example app need a version bump and a changelog entry, which Renovate can't write",
+      "description": "Updates to the periphery app need a version bump and a changelog entry, which Renovate can't write",
       "matchFileNames": ["komomdo-periphery/**"],
       "prBodyNotes": [
         "Before merging, bump `version` in `komomdo-periphery/config.yaml` and add a matching entry to `komomdo-periphery/CHANGELOG.md`."
